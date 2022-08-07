@@ -1,26 +1,46 @@
 import axios from 'axios';
 import styles from '../styles/Home.module.css'
+import { useRouter } from 'next/router'
 
 
 export default function Home() {
+  const router = useRouter()
 
     return(
         <>
-        <div class="w-full max-w-xs">
-        <form>
-  <div class="mb-6">
-    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your email</label>
-    <input type="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@flowbite.com" required/>
-  </div>
-  <div class="mb-6">
-    <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your password</label>
-    <input type="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required/>
-  </div>
-  <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
-</form>
+        <div class="bg-gray-100 dark:bg-gray-900 min-w-full min-h-full">
+          
+        <div class="w-full  mx-auto max-w-sm grid h-screen place-items-center overflow-hidden">
 
-</div>
+        <div class="px-6 py-8">
+        <p class="text-5xl text-center font-bold text-gray-900 hover:text-gray-700">Todoly</p>
+
+            <p class="text-3xl mt-2 text-center font-bold text-gray-500 dark:text-gray-400">Login or create account</p>
+
+            <form>
+                <div class="w-full mt-4">
+                    <input class="block w-full px-4 py-4 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-md dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300" type="text" placeholder="Username" aria-label="Username" />
+                </div>
+
+                <div class="w-full mt-4">
+                    <input class="block w-full px-4 py-4 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-md dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300" type="password" placeholder="Password" aria-label="Password" />
+                </div>
+
+                <div class="flex items-center justify-between mt-4">
+                <div class="flex items-center justify-center py-4 text-center">
+            <span class="text-sm text-gray-600 dark:text-gray-200">Don't have an account? </span>
+            <a href="#" class="mx-2 text-sm font-bold text-blue-500 dark:text-blue-400 hover:underline">Register</a>
+        </div>
+                </div>
+                <button class="px-12 py-4 leading-5 text-white text-2xl transition-colors duration-200 transform bg-gray-700 rounded hover:bg-gray-600 focus:outline-none" type="button">Login</button>
+                <button onClick={() => router.back()} class="mt-4 ml-2 px-12 py-4 leading-5 text-white text-2xl transition-colors duration-200 transform bg-gray-700 rounded hover:bg-gray-600 focus:outline-none" type="button">Back</button>
+
+            </form>
+        </div>
+
         
+    </div>
+    </div>
         </>
     )
 
