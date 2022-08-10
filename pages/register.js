@@ -38,6 +38,7 @@ export default function Home() {
             .then(res => {
                 setAlertFlag(true);
                 setAlertType(true);
+                router.push('/login');
 
             }).catch(err =>{
                 setAlertFlag(true);

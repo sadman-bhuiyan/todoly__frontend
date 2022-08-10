@@ -1,4 +1,5 @@
 import axios from 'axios';
+axios.defaults.withCredentials = true;
 import styles from '../styles/Home.module.css'
 import { useRouter } from 'next/router'
 import { useState } from 'react';
@@ -35,13 +36,12 @@ export default function Home() {
                 setAlertType(true);
                 window.sessionStorage.setItem("username", res.data.user.username);
                 window.sessionStorage.setItem('id', res.data.user.id);
-
+                    router.push('/')
+            
             }).catch(err => {
                 setAlertFlag(true);
                 setAlertType(false);
                 console.log(err)
-            }).then(() => {
-                router.push('/')
             })
     }
 
