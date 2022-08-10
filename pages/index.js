@@ -24,11 +24,11 @@ export default function Home() {
     let response = await fetch('http://localhost:8000/todos', {
       credentials: 'include'
     });
-    if (response.status == 401) {
-      router.push('/login')
-    } else {
+    if (response.status == 200) {
       const json = await response.json();
       setTodos(json.todos);
+    } else {
+      router.push('/login')
     }
   }catch(err){
     console.log(err);
@@ -133,8 +133,8 @@ export default function Home() {
     return (
       <>
 
-
-        <header className="bg-gray-100 dark:bg-gray-900 min-w-full min-h-full">
+        <div className="bg-gray-100 dark:bg-gray-900 w-screen h-screen">
+        <header>
           <nav className="flex flex-col py-2 sm:flex-row sm:justify-between sm:items-center">
             <div>
               <a href="#" className="text-3xl font-bold ml-16 text-gray-900 hover:text-gray-700">Todoly</a>
@@ -263,7 +263,7 @@ export default function Home() {
 
           </div>
         </div>
-
+</div>
 
       </>
     )
