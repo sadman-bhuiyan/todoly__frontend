@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 
 
@@ -54,6 +55,11 @@ export default function Home() {
     event.preventDefault();
     setEditTitle({ title: event.target.value });
   }
+
+  let handleRedirect = (event) => {
+    event.preventDefault();
+    router.push('/login')
+  } 
 
   
 
@@ -141,8 +147,8 @@ export default function Home() {
             </div>
 
             <div className="flex items-center mt-2 -mx-2 mr-16 sm:mt-0">
-              <label for="my-modal-6" class="px-3 py-1 text-xl font-semibold text-gray-900 transition-colors duration-200 transform border-2 rounded-md hover:bg-gray-300">Create Todos</label>
-              <a href="/login" className="px-3 py-1 text-xl font-semibold text-gray-900 transition-colors duration-200 transform border-2 rounded-md hover:bg-gray-300">Logout</a>
+              <label htmlFor="my-modal-6" className="px-3 py-1 text-xl font-semibold text-gray-900 transition-colors duration-200 transform border-2 rounded-md hover:bg-gray-300">Create Todos</label>
+              <button onClick={handleRedirect} className="px-3 py-1 text-xl font-semibold text-gray-900 transition-colors duration-200 transform border-2 rounded-md hover:bg-gray-300">Logout</button>
             </div>
           </nav>
           <section className="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">
@@ -153,39 +159,39 @@ export default function Home() {
                   <div className="max-w-xl px-6 py-12 lg:max-w-5xl lg:w-1/2">
                     <h2 className="text-2xl font-bold text-gray-800 dark:text-white md:text-3xl">{todo.title}</h2>
                     <p className="mt-4 text-gray-600 dark:text-gray-400">{todo.todoText}</p>
-                    <p className='mt-4'>{new Date(todo.dt).toDateString()}</p>
+                    <p className='mt-4'>{new Date(todo.dt).toLocaleString()}</p>
 
 
                     <div className="mt-8">
-                      <label onClick={() => (openModal(todo.title, todo.todoText))} for="my-modal-3" className="px-5 py-2 font-semibold text-gray-100 transition-colors duration-200 transform bg-gray-900 rounded-md hover:bg-gray-700">Edit</label>
+                      <label onClick={() => (openModal(todo.title, todo.todoText))} htmlFor="my-modal-3" className="px-5 py-2 font-semibold text-gray-100 transition-colors duration-200 transform bg-gray-900 rounded-md hover:bg-gray-700">Edit</label>
                       <a onClick={() => deleteTodo(todo.id)} className="px-5 py-2 ml-2 font-semibold text-gray-100 transition-colors duration-200 transform bg-red-600 rounded-md hover:bg-red-500">Delete</a>
                     </div>
                   </div>
                 </div>
 
                 
-        <input type="checkbox" id="my-modal-3" class="modal-toggle" />
+        <input type="checkbox" id="my-modal-3" className="modal-toggle" />
 
-        <div class="modal modal-bottom sm:modal-middle">
-          <div class="modal-box">
-            <label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-            <div class="mt-6 ">
-              <div class="items-center -mx-2 md:flex">
-                <div class="w-full mx-2">
-                  <label class="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200">Title</label>
+        <div className="modal modal-bottom sm:modal-middle">
+          <div className="modal-box">
+            <label htmlFor="my-modal-3" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+            <div className="mt-6 ">
+              <div className="items-center -mx-2 md:flex">
+                <div className="w-full mx-2">
+                  <label className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200">Title</label>
                   <p className='mb-2'>{todo.title}</p>
-                  <input onChange={handleSetEditTitle} class="block w-full px-4 py-2 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" type="text" />
+                  <input onChange={handleSetEditTitle} className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" type="text" />
                 </div>
               </div>
 
-              <div class="w-full mt-4">
-                <label class="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200">Description</label>
+              <div className="w-full mt-4">
+                <label className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200">Description</label>
                 <p className='mb-2'>{todo.todoText}</p>
-                <textarea onChange={handleSetEditDescription} class="block w-full h-40 px-4 py-2 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"></textarea>
+                <textarea onChange={handleSetEditDescription} className="block w-full h-40 px-4 py-2 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"></textarea>
               </div>
 
-              <div class="flex justify-center mt-6">
-                <button onClick={() => editTodo(todo.id)}  class="btn px-4 py-2 text-white transition-colors duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Edit todo</button>
+              <div className="flex justify-center mt-6">
+                <button onClick={() => editTodo(todo.id)}  className="btn px-4 py-2 text-white transition-colors duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Edit todo</button>
               </div>
             </div>
 
@@ -217,28 +223,28 @@ export default function Home() {
         </header>
 
 
-        <input type="checkbox" id="my-modal-6" class="modal-toggle" />
+        <input type="checkbox" id="my-modal-6" className="modal-toggle" />
 
-        <div class="modal modal-bottom sm:modal-middle">
-          <div class="modal-box">
-            <label for="my-modal-6" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-            <div class="mt-6 ">
-              <div class="items-center -mx-2 md:flex">
-                <div class="w-full mx-2">
-                  <label class="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200">Title</label>
+        <div className="modal modal-bottom sm:modal-middle">
+          <div className="modal-box">
+            <label htmlFor="my-modal-6" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+            <div className="mt-6 ">
+              <div className="items-center -mx-2 md:flex">
+                <div className="w-full mx-2">
+                  <label className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200">Title</label>
 
-                  <input onChange={handleTitle} class="block w-full px-4 py-2 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" type="text" />
+                  <input onChange={handleTitle} className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" type="text" />
                 </div>
               </div>
 
-              <div class="w-full mt-4">
-                <label class="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200">Description</label>
+              <div className="w-full mt-4">
+                <label className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200">Description</label>
 
-                <textarea onChange={handleDescription} class="block w-full h-40 px-4 py-2 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"></textarea>
+                <textarea onChange={handleDescription} className="block w-full h-40 px-4 py-2 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"></textarea>
               </div>
 
-              <div class="flex justify-center mt-6">
-                <button onClick={createTodos} class="btn px-4 py-2 text-white transition-colors duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Create todo</button>
+              <div className="flex justify-center mt-6">
+                <button onClick={createTodos} className="btn px-4 py-2 text-white transition-colors duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Create todo</button>
               </div>
             </div>
 
